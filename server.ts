@@ -20,7 +20,7 @@ app.get('/api/health', (req, res) => {
 // API Route for sending report via Resend
 app.post('/api/send-report', async (req, res) => {
   try {
-    const {
+    let {
       pdfBase64,
       facilityEmail,
       supervisorEmail,
@@ -57,7 +57,12 @@ app.post('/api/send-report', async (req, res) => {
     const statusColor = isPassed ? '#059669' : '#dc2626';
     const statusBg = isPassed ? '#ecfdf5' : '#fef2f2';
     const statusBorder = isPassed ? '#a7f3d0' : '#fecaca';
-    const safeFacilityName = facilityName || 'Facility';
+
+    facilityName = (facilityName || 'Facility').trim();
+    status = status || (isPassed ? 'PASSED - COMPLIANT' : 'ACTION REQUIRED - NON-COMPLIANT');
+    score = score !== undefined ? score : 0;
+
+    const safeFacilityName = facilityName;
     const cleanFilename = `Audit_${safeFacilityName.replace(/[^a-zA-Z0-9]/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`;
 
     const htmlContent = `
@@ -169,7 +174,7 @@ app.post('/api/send-report', async (req, res) => {
     } = {
       from: fromAddress,
       to: [facilityEmail],
-      subject: `[AUDIT REPORT] ${isPassed ? 'PASSED' : 'ACTION REQUIRED'} (${score}%) - ${safeFacilityName}`,
+      subject: `Clean Audit Pro | Facility Inspection: ${facilityName} - ${status} (${score}%)`,
       html: htmlContent,
       attachments: [
         {

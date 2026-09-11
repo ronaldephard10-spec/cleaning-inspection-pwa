@@ -35,7 +35,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const rawBody = req.body;
     const body = typeof rawBody === 'string' ? JSON.parse(rawBody) : (rawBody || {});
 
-    const {
+    let {
       pdfBase64,
       facilityEmail,
       supervisorEmail,
@@ -80,7 +80,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const statusColor = isPassed ? '#059669' : '#dc2626';
     const statusBg = isPassed ? '#ecfdf5' : '#fef2f2';
     const statusBorder = isPassed ? '#a7f3d0' : '#fecaca';
-    const safeFacilityName = (facilityName || 'Facility').trim();
+
+    facilityName = (facilityName || 'Facility').trim();
+    status = status || (isPassed ? 'PASSED - COMPLIANT' : 'ACTION REQUIRED - NON-COMPLIANT');
+    score = score !== undefined ? score : numericScore;
+
+    const safeFacilityName = facilityName;
     const cleanFilename = `Audit_${safeFacilityName.replace(/[^a-zA-Z0-9]/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`;
 
     const htmlContent = `
@@ -205,7 +210,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     } = {
       from: fromAddress,
       to: [facilityEmail.trim()],
-      subject: `[AUDIT REPORT] ${isPassed ? 'PASSED' : 'ACTION REQUIRED'} (${numericScore}%) - ${safeFacilityName}`,
+      subject: `Clean Audit Pro | Facility Inspection: ${facilityName} - ${status} (${score}%)`,
       html: htmlContent,
       attachments: [
         {
