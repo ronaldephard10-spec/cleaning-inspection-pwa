@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="108" fill="url(#grad)" />
+  <!-- Clipboard / Audit Shield Symbol -->
+  <g filter="url(#shadow)" transform="translate(106, 86)">
+    <!-- Clipboard body -->
+    <rect x="20" y="40" width="260" height="320" rx="28" fill="#ffffff" />
+    <!-- Clip -->
+    <rect x="90" y="20" width="120" height="40" rx="12" fill="#0369a1" />
+    <circle cx="150" cy="40" r="8" fill="#ffffff" />
+    <!-- Audit check lines -->
+    <rect x="60" y="100" width="180" height="14" rx="7" fill="#e2e8f0" />
+    <rect x="60" y="130" width="140" height="14" rx="7" fill="#e2e8f0" />
+    <!-- Checkmark Badge -->
+    <circle cx="210" cy="270" r="54" fill="#10b981" />
+    <path d="M190 270 L204 284 L232 254" fill="none" stroke="#ffffff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+    <!-- Sparkle Stars for Cleanliness -->
+    <path d="M70 240 Q75 255 90 260 Q75 265 70 280 Q65 265 50 260 Q65 255 70 240 Z" fill="#38bdf8" />
+    <path d="M100 200 Q103 210 113 213 Q103 216 100 226 Q97 216 87 213 Q97 210 100 200 Z" fill="#38bdf8" opacity="0.8" />
+  </g>
+</svg>

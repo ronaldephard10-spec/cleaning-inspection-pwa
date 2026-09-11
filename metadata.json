@@ -1,0 +1,6 @@
+{
+  "name": "Commercial Cleaning Audit PWA",
+  "description": "Mobile-first Commercial Cleaning Quality Inspection Audit app for field supervisors with real-time scoring, digital signatures, executive PDF report generation, and Resend email delivery.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
