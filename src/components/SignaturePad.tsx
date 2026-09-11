@@ -27,7 +27,7 @@ export const SignaturePad: React.FC<SignaturePadProps> = ({
     const rect = container.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
     const width = rect.width;
-    const height = 160;
+    const height = 180;
 
     canvas.width = width * dpr;
     canvas.height = height * dpr;
@@ -151,26 +151,26 @@ export const SignaturePad: React.FC<SignaturePadProps> = ({
   };
 
   return (
-    <div id="signature-pad-container" className="space-y-2">
+    <div id="signature-pad-container" className="space-y-2.5">
       <div className="flex items-center justify-between">
-        <label className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-300">
-          <PenTool className="w-3.5 h-3.5 text-sky-400" />
+        <label className="flex items-center gap-1.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-200">
+          <PenTool className="w-4 h-4 text-sky-400 shrink-0" />
           <span>Supervisor Digital Sign-Off</span>
-          <span className="text-rose-400">*</span>
+          <span className="text-rose-400 font-bold">*</span>
         </label>
         <div className="flex items-center gap-2">
           {hasDrawn && (
-            <span className="flex items-center gap-1 text-[11px] font-medium text-emerald-400">
-              <Check className="w-3 h-3" /> Signed
+            <span className="flex items-center gap-1 text-xs sm:text-sm font-semibold text-emerald-400">
+              <Check className="w-4 h-4" /> Signed
             </span>
           )}
           <button
             type="button"
             id="clear-signature-btn"
             onClick={handleClear}
-            className="flex items-center gap-1 rounded-md bg-slate-800 hover:bg-slate-700 px-2.5 py-1 text-xs font-medium text-slate-300 transition active:scale-95"
+            className="flex items-center gap-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-200 transition active:scale-95"
           >
-            <RotateCcw className="w-3 h-3 text-slate-400" />
+            <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
             <span>Clear Signature</span>
           </button>
         </div>
@@ -189,29 +189,29 @@ export const SignaturePad: React.FC<SignaturePadProps> = ({
           onTouchStart={startDrawing}
           onTouchMove={draw}
           onTouchEnd={stopDrawing}
-          className="block w-full h-[160px]"
+          className="block w-full h-[180px]"
         />
 
         {/* Signature baseline line guide */}
         <div className="pointer-events-none absolute bottom-9 left-6 right-6 border-b border-dashed border-slate-300 flex justify-between items-end pb-1">
-          <span className="text-[10px] uppercase font-semibold tracking-wider text-slate-400">
+          <span className="text-xs uppercase font-bold tracking-wider text-slate-400">
             ✕ Sign on the line above
           </span>
-          <span className="text-[10px] text-slate-400">
+          <span className="text-xs text-slate-400 font-medium">
             {supervisorName ? `Authorized: ${supervisorName}` : 'Field Supervisor'}
           </span>
         </div>
 
         {!hasDrawn && !isDrawing && (
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-            <span className="text-xs text-slate-400/80 font-medium">
+            <span className="text-sm text-slate-400/90 font-medium">
               Draw signature here with finger or stylus
             </span>
           </div>
         )}
       </div>
 
-      <p className="text-[11px] text-slate-400 italic">
+      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
         By signing above, the supervisor formally certifies that on-site commercial cleaning standards have been physically inspected and accurately evaluated.
       </p>
     </div>

@@ -283,22 +283,22 @@ export default function AuditInspectionPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-sky-500 selection:text-white pb-24">
       {/* Top Mobile-First App Bar */}
-      <header className="border-b border-slate-800 bg-slate-900/90 backdrop-blur-md px-4 py-3 sticky top-0 z-40">
+      <header className="border-b border-slate-800 bg-slate-900/95 backdrop-blur-md px-4 py-3 sm:py-3.5 sticky top-0 z-40">
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-linear-to-br from-sky-500 to-blue-700 text-white shadow-md">
+          <div className="flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-sky-500 to-blue-700 text-white shadow-md shrink-0">
               <FileCheck2 className="w-5 h-5" />
             </div>
             <div>
-              <div className="flex items-center gap-1.5">
-                <h1 className="text-sm sm:text-base font-bold text-white tracking-tight leading-none">
+              <div className="flex items-center gap-2">
+                <h1 className="text-base sm:text-lg font-bold text-white tracking-tight leading-none">
                   CleanAudit Pro
                 </h1>
-                <span className="rounded-sm bg-sky-950 px-1.5 py-0.5 text-[10px] font-bold text-sky-400 border border-sky-800/60">
+                <span className="rounded-md bg-sky-950 px-2 py-0.5 text-xs font-bold text-sky-400 border border-sky-800/60">
                   PWA
                 </span>
               </div>
-              <p className="text-[11px] text-slate-400">
+              <p className="text-xs sm:text-sm text-slate-300 mt-0.5">
                 Commercial Quality Audit Engine
               </p>
             </div>
@@ -308,10 +308,10 @@ export default function AuditInspectionPage() {
             <button
               type="button"
               onClick={handleLoadDemoData}
-              className="hidden sm:flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800/80 hover:bg-slate-700 px-2.5 py-1.5 text-xs font-medium text-slate-300 transition"
+              className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 px-3 py-1.5 text-xs sm:text-sm font-semibold text-slate-200 transition"
               title="Autofill sample audit data for testing"
             >
-              <Sparkles className="w-3.5 h-3.5 text-sky-400" />
+              <Sparkles className="w-4 h-4 text-sky-400" />
               <span>Sample Demo</span>
             </button>
 
@@ -324,17 +324,17 @@ export default function AuditInspectionPage() {
       <ScoreBanner items={formData.items} />
 
       {/* Main Content Form */}
-      <main className="max-w-4xl mx-auto w-full px-4 pt-4 sm:pt-6 space-y-6">
+      <main className="max-w-4xl mx-auto w-full px-3.5 sm:px-4 pt-4 sm:pt-6 space-y-6">
         {/* Draft Restored Alert Banner */}
         {isDraftRestored && (
-          <div className="flex items-center justify-between gap-2 rounded-xl bg-sky-950/60 border border-sky-800/60 p-3 text-xs text-sky-200">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0" />
+          <div className="flex items-center justify-between gap-2.5 rounded-xl bg-sky-950/70 border border-sky-800/70 p-3.5 text-sm text-sky-200">
+            <div className="flex items-center gap-2.5">
+              <CheckCircle2 className="w-5 h-5 text-sky-400 shrink-0" />
               <span>Restored your active inspection draft from phone storage.</span>
             </div>
             <button
               onClick={() => setIsDraftRestored(false)}
-              className="text-xs font-bold text-sky-300 hover:text-white"
+              className="text-sm font-bold text-sky-300 hover:text-white px-2 py-1"
             >
               Dismiss
             </button>
@@ -343,15 +343,15 @@ export default function AuditInspectionPage() {
 
         {/* Global Error Banner */}
         {errorMessage && (
-          <div className="flex items-start gap-3 rounded-xl bg-rose-950/80 border border-rose-800 p-4 text-xs sm:text-sm text-rose-200 shadow-md animate-in fade-in">
+          <div className="flex items-start gap-3 rounded-xl bg-rose-950/90 border border-rose-800 p-4 text-sm sm:text-base text-rose-200 shadow-md animate-in fade-in">
             <AlertCircle className="w-5 h-5 text-rose-400 shrink-0 mt-0.5" />
             <div className="flex-1">
-              <p className="font-semibold text-rose-100">Audit Form Notification</p>
-              <p className="mt-0.5">{errorMessage}</p>
+              <p className="font-bold text-rose-100 text-base">Audit Form Notification</p>
+              <p className="mt-1 leading-relaxed">{errorMessage}</p>
             </div>
             <button
               onClick={() => setErrorMessage('')}
-              className="text-rose-400 hover:text-white text-xs font-bold"
+              className="text-rose-300 hover:text-white text-sm font-bold p-1 rounded-md"
             >
               ✕
             </button>
@@ -360,29 +360,29 @@ export default function AuditInspectionPage() {
 
         {/* Success Banner */}
         {submissionState === 'success' && (
-          <div className="rounded-2xl bg-emerald-950/90 border border-emerald-500/60 p-5 text-emerald-100 shadow-xl animate-in zoom-in-95">
-            <div className="flex items-start gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500 text-slate-950 shrink-0 font-bold">
+          <div className="rounded-2xl bg-emerald-950/90 border border-emerald-500/60 p-5 sm:p-6 text-emerald-100 shadow-xl animate-in zoom-in-95">
+            <div className="flex items-start gap-3.5">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-500 text-slate-950 shrink-0 font-bold">
                 <CheckCircle2 className="w-6 h-6" />
               </div>
               <div className="flex-1">
-                <h3 className="text-base font-bold text-white">Inspection Audit Dispatched!</h3>
-                <p className="text-xs sm:text-sm text-emerald-200 mt-1">{statusMessage}</p>
-                <div className="mt-4 flex flex-wrap gap-2.5">
+                <h3 className="text-lg sm:text-xl font-bold text-white">Inspection Audit Dispatched!</h3>
+                <p className="text-sm sm:text-base text-emerald-200 mt-1 leading-relaxed">{statusMessage}</p>
+                <div className="mt-4 flex flex-wrap gap-3">
                   <button
                     type="button"
                     onClick={handleDownloadPdf}
-                    className="flex items-center gap-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 px-3.5 py-2 text-xs font-bold text-white shadow-md transition"
+                    className="flex items-center gap-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 px-4 py-2.5 text-sm font-bold text-white shadow-md transition"
                   >
-                    <Download className="w-3.5 h-3.5" />
+                    <Download className="w-4 h-4" />
                     Download Executive PDF
                   </button>
                   <button
                     type="button"
                     onClick={handleResetForm}
-                    className="flex items-center gap-1.5 rounded-lg border border-emerald-700 bg-emerald-900/60 hover:bg-emerald-900 px-3.5 py-2 text-xs font-medium text-emerald-100 transition"
+                    className="flex items-center gap-2 rounded-xl border border-emerald-700 bg-emerald-900/60 hover:bg-emerald-900 px-4 py-2.5 text-sm font-semibold text-emerald-100 transition"
                   >
-                    <RotateCcw className="w-3.5 h-3.5" />
+                    <RotateCcw className="w-4 h-4" />
                     Start New Audit
                   </button>
                 </div>
@@ -410,19 +410,19 @@ export default function AuditInspectionPage() {
 
           {/* Section 2: 10-Point Commercial Checklist */}
           <section aria-labelledby="checklist-section-title" className="space-y-4">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+            <div className="flex items-center justify-between pb-2.5 border-b border-slate-800">
               <div className="flex items-center gap-2">
-                <ClipboardList className="w-4 h-4 text-sky-400" />
-                <h2 id="checklist-section-title" className="text-sm md:text-base font-bold text-white">
+                <ClipboardList className="w-5 h-5 text-sky-400" />
+                <h2 id="checklist-section-title" className="text-base sm:text-lg font-bold text-white">
                   10-Point Commercial Quality Inspection Checklist
                 </h2>
               </div>
-              <span className="text-xs text-slate-400">
+              <span className="text-xs sm:text-sm font-medium text-slate-300">
                 All 10 Areas Required
               </span>
             </div>
 
-            <div className="space-y-3.5">
+            <div className="space-y-4">
               {formData.items.map((item) => (
                 <InspectionCard
                   key={item.id}
@@ -438,7 +438,7 @@ export default function AuditInspectionPage() {
           {/* Section 3: Digital Signature Pad */}
           <section
             aria-labelledby="signature-section-title"
-            className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 md:p-6 shadow-md"
+            className="rounded-2xl border border-slate-800 bg-slate-900/90 p-4 sm:p-6 shadow-md"
           >
             <SignaturePad
               value={formData.supervisorSignature}
@@ -448,45 +448,45 @@ export default function AuditInspectionPage() {
           </section>
 
           {/* Section 4: General Executive Summary Notes */}
-          <section className="rounded-2xl border border-slate-800 bg-slate-900/80 p-4 md:p-6 shadow-md">
+          <section className="rounded-2xl border border-slate-800 bg-slate-900/90 p-4 sm:p-6 shadow-md">
             <label
               htmlFor="general-notes-input"
-              className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5"
+              className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-200 mb-1.5"
             >
               Executive Summary & Client Recommendations (Optional)
             </label>
             <textarea
               id="general-notes-input"
-              rows={2}
+              rows={3}
               value={formData.generalNotes}
               onChange={(e) => setFormData((prev) => ({ ...prev, generalNotes: e.target.value }))}
               placeholder="Provide overall facility impressions, client-facing remarks, or scheduled corrective actions..."
-              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-2.5 text-xs sm:text-sm text-slate-100 placeholder:text-slate-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 transition resize-y"
+              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3.5 py-3 text-base text-slate-100 placeholder:text-slate-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 transition resize-y"
             />
           </section>
 
           {/* Section 5: Action & Submission Bar */}
-          <section className="rounded-2xl border border-slate-800 bg-slate-900 p-4 md:p-6 shadow-xl space-y-4">
+          <section className="rounded-2xl border border-slate-800 bg-slate-900 p-4 sm:p-6 shadow-xl space-y-4">
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <div className="flex items-center gap-2">
                   <ShieldCheck className={`w-5 h-5 ${isCompliant ? 'text-emerald-400' : 'text-rose-400'}`} />
-                  <span className="font-bold text-white text-sm sm:text-base">
+                  <span className="font-bold text-white text-base sm:text-lg">
                     Ready to Generate Audit Record
                   </span>
                 </div>
-                <p className="text-xs text-slate-400 mt-0.5">
+                <p className="text-xs sm:text-sm text-slate-300 mt-1">
                   Delivers certified PDF to <strong>{formData.facilityEmail || 'Facility Manager'}</strong> via Resend API
                 </p>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex items-center gap-2.5 w-full sm:w-auto">
+              <div className="flex items-center gap-3 w-full sm:w-auto">
                 <button
                   type="button"
                   id="preview-pdf-btn"
                   onClick={handlePreviewPdf}
-                  className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 py-3 px-4 text-xs font-semibold text-slate-200 transition active:scale-95"
+                  className="flex-1 sm:flex-initial flex items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 py-3.5 px-5 text-sm sm:text-base font-semibold text-slate-200 transition active:scale-95 min-h-[48px]"
                 >
                   <Eye className="w-4 h-4 text-sky-400" />
                   <span>Preview PDF</span>
@@ -496,7 +496,7 @@ export default function AuditInspectionPage() {
                   type="submit"
                   id="dispatch-report-btn"
                   disabled={submissionState === 'generating_pdf' || submissionState === 'dispatching'}
-                  className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 rounded-xl py-3 px-6 text-xs sm:text-sm font-bold text-white shadow-lg transition active:scale-95 ${
+                  className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 rounded-xl py-3.5 px-6 text-sm sm:text-base font-bold text-white shadow-lg transition active:scale-95 min-h-[48px] ${
                     isCompliant
                       ? 'bg-linear-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 shadow-emerald-950/40'
                       : 'bg-linear-to-r from-rose-600 to-red-700 hover:from-rose-500 hover:to-red-600 shadow-rose-950/40'
@@ -523,14 +523,14 @@ export default function AuditInspectionPage() {
             </div>
 
             {/* Quick Demo button on mobile */}
-            <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+            <div className="pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs sm:text-sm text-slate-300">
               <span>Target standard: 85% passing threshold</span>
               <button
                 type="button"
                 onClick={handleLoadDemoData}
-                className="sm:hidden text-sky-400 hover:underline"
+                className="text-sky-400 hover:underline font-semibold"
               >
-                Load Sample Data
+                Autofill Demo
               </button>
             </div>
           </section>
@@ -541,10 +541,10 @@ export default function AuditInspectionPage() {
       {showPdfModal && pdfPreviewUri && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-sm p-2 sm:p-6 animate-in fade-in">
           <div className="flex flex-col w-full max-w-4xl h-[90vh] bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-slate-800 bg-slate-950">
-              <div className="flex items-center gap-2">
-                <FileCheck2 className="w-4 h-4 text-sky-400" />
-                <h3 className="text-sm font-bold text-white">
+            <div className="flex items-center justify-between px-4 py-3.5 border-b border-slate-800 bg-slate-950">
+              <div className="flex items-center gap-2.5">
+                <FileCheck2 className="w-5 h-5 text-sky-400" />
+                <h3 className="text-base font-bold text-white">
                   Executive PDF Audit Report Preview
                 </h3>
               </div>
@@ -552,15 +552,15 @@ export default function AuditInspectionPage() {
                 <button
                   type="button"
                   onClick={handleDownloadPdf}
-                  className="flex items-center gap-1 rounded-lg bg-sky-600 hover:bg-sky-500 px-3 py-1.5 text-xs font-semibold text-white transition"
+                  className="flex items-center gap-1.5 rounded-lg bg-sky-600 hover:bg-sky-500 px-3.5 py-2 text-xs sm:text-sm font-semibold text-white transition"
                 >
-                  <Download className="w-3.5 h-3.5" />
+                  <Download className="w-4 h-4" />
                   <span>Download</span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowPdfModal(false)}
-                  className="rounded-lg bg-slate-800 hover:bg-slate-700 p-1.5 text-slate-300 transition"
+                  className="rounded-lg bg-slate-800 hover:bg-slate-700 p-2 text-slate-300 hover:text-white transition"
                 >
                   ✕
                 </button>

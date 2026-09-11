@@ -24,9 +24,9 @@ export const OfflineIndicator: React.FC = () => {
   return (
     <div
       id="offline-banner"
-      className="fixed bottom-4 left-4 z-50 flex items-center gap-2 rounded-lg bg-amber-500/95 backdrop-blur-md px-3 py-1.5 text-xs font-semibold text-slate-950 shadow-xl border border-amber-400"
+      className="fixed bottom-4 left-4 z-50 flex items-center gap-2 rounded-xl bg-amber-500/95 backdrop-blur-md px-3.5 py-2 text-xs sm:text-sm font-bold text-slate-950 shadow-xl border border-amber-400"
     >
-      <WifiOff className="w-4 h-4 text-slate-950 animate-pulse" />
+      <WifiOff className="w-4 h-4 text-slate-950 animate-pulse shrink-0" />
       <span>Offline Mode — Field audit data saved locally</span>
     </div>
   );

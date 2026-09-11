@@ -95,20 +95,20 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
   return (
     <div
       id={`inspection-item-${item.id}`}
-      className={`rounded-2xl border bg-slate-900/90 p-4 md:p-5 transition shadow-sm ${getBorderColor()}`}
+      className={`rounded-2xl border bg-slate-900/90 p-4 sm:p-5 transition shadow-sm ${getBorderColor()}`}
     >
       {/* Item Header */}
-      <div className="flex items-start justify-between gap-3 mb-3">
+      <div className="flex items-start justify-between gap-3 mb-3.5">
         <div className="flex items-start gap-3">
-          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-slate-800 border border-slate-700 text-xs font-bold text-sky-400">
+          <span className="flex h-8 w-8 sm:h-9 sm:w-9 shrink-0 items-center justify-center rounded-xl bg-slate-800 border border-slate-700 text-sm font-bold text-sky-400 mt-0.5">
             {item.number}
           </span>
           <div>
-            <h3 className="text-sm md:text-base font-semibold text-white leading-tight">
+            <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
               {item.title}
             </h3>
             {item.description && (
-              <p className="mt-1 text-xs text-slate-400 leading-relaxed">
+              <p className="mt-1.5 text-sm text-slate-300 leading-relaxed">
                 {item.description}
               </p>
             )}
@@ -118,12 +118,12 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
         {/* Current score pill */}
         <div className="shrink-0 text-right">
           <span
-            className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-bold tracking-tight ${
+            className={`inline-block px-3 py-1 rounded-full text-xs sm:text-sm font-bold tracking-tight ${
               item.status === 'pass'
-                ? 'bg-emerald-950 text-emerald-400 border border-emerald-800/60'
+                ? 'bg-emerald-950 text-emerald-300 border border-emerald-800/80'
                 : item.status === 'needs_attention'
-                ? 'bg-amber-950 text-amber-400 border border-amber-800/60'
-                : 'bg-rose-950 text-rose-400 border border-rose-800/60'
+                ? 'bg-amber-950 text-amber-300 border border-amber-800/80'
+                : 'bg-rose-950 text-rose-300 border border-rose-800/80'
             }`}
           >
             {item.score.toFixed(1)} pt
@@ -133,22 +133,22 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
 
       {/* 3-State Segmented Control */}
       <div className="mb-4">
-        <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
+        <label className="block text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-300 mb-1.5">
           Audit Assessment
         </label>
-        <div className="grid grid-cols-3 gap-1.5 rounded-xl bg-slate-950/80 p-1 border border-slate-800">
+        <div className="grid grid-cols-3 gap-1.5 rounded-xl bg-slate-950 p-1.5 border border-slate-800">
           {/* Pass */}
           <button
             type="button"
             id={`btn-pass-${item.id}`}
             onClick={() => onStatusChange('pass', 1.0)}
-            className={`flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs transition active:scale-95 ${
+            className={`flex items-center justify-center gap-1.5 py-3 rounded-lg text-xs sm:text-sm font-semibold transition active:scale-95 min-h-[46px] ${
               item.status === 'pass'
                 ? statusConfig.pass.activeClasses
                 : statusConfig.pass.inactiveClasses
             }`}
           >
-            <CheckCircle2 className="w-3.5 h-3.5" />
+            <CheckCircle2 className="w-4 h-4 shrink-0" />
             <span>Pass (1.0)</span>
           </button>
 
@@ -157,13 +157,13 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
             type="button"
             id={`btn-attn-${item.id}`}
             onClick={() => onStatusChange('needs_attention', 0.5)}
-            className={`flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs transition active:scale-95 ${
+            className={`flex items-center justify-center gap-1.5 py-3 rounded-lg text-xs sm:text-sm font-semibold transition active:scale-95 min-h-[46px] ${
               item.status === 'needs_attention'
                 ? statusConfig.needs_attention.activeClasses
                 : statusConfig.needs_attention.inactiveClasses
             }`}
           >
-            <AlertTriangle className="w-3.5 h-3.5" />
+            <AlertTriangle className="w-4 h-4 shrink-0" />
             <span className="truncate">Attn (0.5)</span>
           </button>
 
@@ -172,23 +172,23 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
             type="button"
             id={`btn-fail-${item.id}`}
             onClick={() => onStatusChange('fail', 0.0)}
-            className={`flex items-center justify-center gap-1.5 py-2.5 rounded-lg text-xs transition active:scale-95 ${
+            className={`flex items-center justify-center gap-1.5 py-3 rounded-lg text-xs sm:text-sm font-semibold transition active:scale-95 min-h-[46px] ${
               item.status === 'fail'
                 ? statusConfig.fail.activeClasses
                 : statusConfig.fail.inactiveClasses
             }`}
           >
-            <XCircle className="w-3.5 h-3.5" />
+            <XCircle className="w-4 h-4 shrink-0" />
             <span>Fail (0.0)</span>
           </button>
         </div>
       </div>
 
       {/* Camera Capture & Thumbnail */}
-      <div className="mb-3 space-y-2">
+      <div className="mb-3.5 space-y-2">
         <div className="flex items-center justify-between">
-          <label className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400">
-            <Camera className="w-3.5 h-3.5 text-sky-400" />
+          <label className="flex items-center gap-1.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-300">
+            <Camera className="w-4 h-4 text-sky-400 shrink-0" />
             <span>Photographic Evidence</span>
           </label>
 
@@ -208,9 +208,9 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
               type="button"
               id={`capture-btn-${item.id}`}
               onClick={() => fileInputRef.current?.click()}
-              className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800/80 hover:bg-slate-700 px-2.5 py-1 text-xs font-medium text-slate-200 transition active:scale-95"
+              className="flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 px-3 py-1.5 text-xs sm:text-sm font-medium text-slate-200 transition active:scale-95"
             >
-              <Camera className="w-3.5 h-3.5 text-sky-400" />
+              <Camera className="w-4 h-4 text-sky-400" />
               <span>Capture Photo</span>
             </button>
           ) : (
@@ -218,7 +218,7 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
               type="button"
               id={`retake-btn-${item.id}`}
               onClick={() => fileInputRef.current?.click()}
-              className="text-xs text-sky-400 hover:text-sky-300 font-medium"
+              className="text-xs sm:text-sm text-sky-400 hover:text-sky-300 font-semibold"
             >
               Retake Photo
             </button>
@@ -227,10 +227,10 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
 
         {/* Thumbnail Preview if Photo is Captured */}
         {item.photoUrl && (
-          <div className="flex items-center gap-3 p-2 rounded-xl bg-slate-950 border border-slate-800">
+          <div className="flex items-center gap-3 p-2.5 rounded-xl bg-slate-950 border border-slate-800">
             <div
               onClick={() => setShowPreviewModal(true)}
-              className="relative w-16 h-16 rounded-lg overflow-hidden border border-slate-700 cursor-pointer shrink-0 group"
+              className="relative w-16 h-16 sm:w-18 sm:h-18 rounded-lg overflow-hidden border border-slate-700 cursor-pointer shrink-0 group"
             >
               <img
                 src={item.photoUrl}
@@ -243,10 +243,10 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
             </div>
 
             <div className="flex-1 min-w-0">
-              <p className="text-xs font-medium text-slate-200 truncate">
+              <p className="text-sm font-medium text-slate-200 truncate">
                 Photo Captured & Embedded
               </p>
-              <p className="text-[11px] text-emerald-400">
+              <p className="text-xs text-emerald-400 font-medium mt-0.5">
                 Will be included in PDF report
               </p>
             </div>
@@ -255,7 +255,7 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
               <button
                 type="button"
                 onClick={() => setShowPreviewModal(true)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition"
+                className="p-2 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition"
                 title="Zoom Photo"
               >
                 <Maximize2 className="w-4 h-4" />
@@ -264,7 +264,7 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
                 type="button"
                 id={`remove-photo-${item.id}`}
                 onClick={() => onPhotoChange(undefined)}
-                className="p-1.5 rounded-lg text-rose-400 hover:text-rose-300 hover:bg-rose-950/50 transition"
+                className="p-2 rounded-lg text-rose-400 hover:text-rose-300 hover:bg-rose-950/50 transition"
                 title="Remove Photo"
               >
                 <Trash2 className="w-4 h-4" />
@@ -278,12 +278,12 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
       <div>
         <label
           htmlFor={`notes-${item.id}`}
-          className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-1"
+          className="flex items-center gap-1.5 text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-300 mb-1.5"
         >
-          <FileText className="w-3.5 h-3.5 text-slate-400" />
+          <FileText className="w-4 h-4 text-slate-400 shrink-0" />
           <span>Deficiency Notes & Observations</span>
           {item.status !== 'pass' && (
-            <span className="text-amber-400 font-normal text-[10px]">(Recommended for deficiencies)</span>
+            <span className="text-amber-400 font-medium text-xs">(Recommended for deficiencies)</span>
           )}
         </label>
         <textarea
@@ -292,21 +292,21 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
           value={item.notes}
           onChange={(e) => onNotesChange(e.target.value)}
           placeholder="Add deficiency notes or specifics..."
-          className="w-full rounded-xl border border-slate-800 bg-slate-950/90 px-3 py-2 text-xs text-slate-100 placeholder:text-slate-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 transition resize-y"
+          className="w-full rounded-xl border border-slate-800 bg-slate-950 px-3.5 py-2.5 text-base text-slate-100 placeholder:text-slate-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500 transition resize-y"
         />
       </div>
 
       {/* Zoom Modal for Photo */}
       {showPreviewModal && item.photoUrl && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-xs p-4 animate-in fade-in">
-          <div className="relative max-w-lg w-full bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl p-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-xs p-4 animate-in fade-in">
+          <div className="relative max-w-lg w-full bg-slate-900 border border-slate-700 rounded-2xl overflow-hidden shadow-2xl p-4 sm:p-5">
             <div className="flex items-center justify-between pb-3 mb-2 border-b border-slate-800">
-              <h4 className="text-sm font-semibold text-white truncate">
+              <h4 className="text-base font-bold text-white truncate">
                 {item.title} - Visual Proof
               </h4>
               <button
                 onClick={() => setShowPreviewModal(false)}
-                className="p-1 text-slate-400 hover:text-white rounded-md"
+                className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -314,12 +314,12 @@ export const InspectionCard: React.FC<InspectionCardProps> = ({
             <img
               src={item.photoUrl}
               alt={item.title}
-              className="w-full max-h-[60vh] object-contain rounded-xl border border-slate-800 bg-black"
+              className="w-full max-h-[65vh] object-contain rounded-xl border border-slate-800 bg-black"
             />
-            <div className="mt-3 flex justify-end">
+            <div className="mt-4 flex justify-end">
               <button
                 onClick={() => setShowPreviewModal(false)}
-                className="px-4 py-1.5 rounded-lg bg-slate-800 text-xs font-semibold text-white hover:bg-slate-700"
+                className="px-5 py-2 rounded-xl bg-slate-800 text-sm font-semibold text-white hover:bg-slate-700 transition"
               >
                 Close
               </button>
